@@ -6,6 +6,7 @@ import type { InterfaceUser } from "./User";
 /**
  * This is an interface representing a document for an event in the database(MongoDB).
  */
+console.log("test");
 export interface InterfaceEvent {
   _id: Types.ObjectId;
   title: string;

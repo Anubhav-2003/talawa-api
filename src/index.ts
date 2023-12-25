@@ -135,6 +135,6 @@ async function startServer(): Promise<void> {
   );
   logger.info(`🚀 Subscription endpoint ready at ws://localhost:4000/graphql`);
 }
-
+console.log("test");
 startServer();
 loadPlugins();

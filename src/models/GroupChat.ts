@@ -15,6 +15,7 @@ export interface InterfaceGroupChat {
   organization: PopulatedDoc<InterfaceOrganization & Document>;
   status: string;
 }
+console.log("test");
 /**
  * This is the structure of a group chat
  * @param title - Title

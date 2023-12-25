@@ -7,6 +7,7 @@ type AdvertisementTypes = {
   type: "POPUP" | "MENU" | "BANNER";
   // Other properties specific to each type
 };
+console.log("test");
 export interface InterfaceAdvertisement {
   _id: Types.ObjectId;
   orgId: string;

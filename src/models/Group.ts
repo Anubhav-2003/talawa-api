@@ -14,6 +14,7 @@ export interface InterfaceGroup {
   status: string;
   admins: PopulatedDoc<InterfaceUser & Document>[];
 }
+console.log("test");
 /**
  * This is the structure of a group
  * @param title - Title

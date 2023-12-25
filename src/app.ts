@@ -98,5 +98,6 @@ app.get("/", (req, res) =>
     status: "healthy",
   })
 );
+console.log("test");
 
 export default app;

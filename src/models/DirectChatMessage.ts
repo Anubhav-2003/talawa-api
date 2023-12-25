@@ -14,6 +14,7 @@ export interface InterfaceDirectChatMessage {
   messageContent: string;
   status: string;
 }
+console.log("test");
 /**
  * This is the Structure of the Direct chat Message
  * @param directChatMessageBelongsTo - To whom the direct chat messages belong

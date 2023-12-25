@@ -9,6 +9,7 @@ export interface InterfaceEncodedVideo {
   content: string;
   numberOfUses: number;
 }
+console.log("test");
 /**
  * This describes the schema for a `encodedVideo` that corresponds to `InterfaceEncodedVideo` document.
  * @param fileName - File name.

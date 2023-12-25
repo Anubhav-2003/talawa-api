@@ -43,7 +43,7 @@ export const connect = async (): Promise<void> => {
     }
   }
 };
-
+console.log("test");
 export const disconnect = async (): Promise<void> => {
   await mongoose.connection.close();
 };

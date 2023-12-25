@@ -1,5 +1,5 @@
 import z from "zod";
-
+console.log("test");
 export const envSchema = z
   .object({
     ACCESS_TOKEN_SECRET: z.string().nonempty(),

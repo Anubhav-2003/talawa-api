@@ -8,7 +8,7 @@ export interface InterfaceFeedback {
   rating: number;
   review: string | null;
 }
-
+console.log("test");
 const feedbackSchema = new Schema({
   eventId: {
     type: Schema.Types.ObjectId,

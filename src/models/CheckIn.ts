@@ -8,7 +8,7 @@ import {
   type Model,
 } from "mongoose";
 import { type InterfaceEventAttendee } from "./EventAttendee";
-
+console.log("test");
 export interface InterfaceCheckIn {
   _id: Types.ObjectId;
   eventAttendeeId: PopulatedDoc<InterfaceEventAttendee & Document>;

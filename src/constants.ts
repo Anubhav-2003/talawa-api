@@ -1,6 +1,6 @@
 import { getEnvIssues, envSchema } from "./env";
 import crypto from "crypto";
-
+console.log("test");
 const issues = getEnvIssues();
 let ENV = process.env;
 if (!issues) {

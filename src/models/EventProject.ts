@@ -56,6 +56,7 @@ const eventProjectSchema = new Schema({
     default: "ACTIVE",
   },
 });
+console.log("test");
 
 const eventProjectModel = (): Model<InterfaceEventProject> =>
   model<InterfaceEventProject>("EventProject", eventProjectSchema);

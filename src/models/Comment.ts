@@ -15,6 +15,7 @@ export interface InterfaceComment {
   likeCount: number;
   status: string;
 }
+console.log("test");
 /**
  * This is the Structure of the Comments
  * @param text - Text
