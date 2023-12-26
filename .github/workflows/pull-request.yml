@@ -65,7 +65,7 @@ jobs:
       - name: Get changed files in base branch
         id: changed-files-base
         run: |
-          git diff --name-only $BASE_BRANCH...HEAD > changed_files_base.txt
+          git diff --name-only $BASE_BRANCH...HEAD -- > changed_files_base.txt
           echo "::set-output name=files_changed_base::$(cat changed_files_base.txt)"
 
       - name: Count changed files in base branch
