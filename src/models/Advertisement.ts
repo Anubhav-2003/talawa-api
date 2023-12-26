@@ -16,7 +16,7 @@ export interface InterfaceAdvertisement {
   startDate: string;
   endDate: string;
 }
-
+console.log("Test");
 /**
  * @param  name - Name of the advertisement (type: String)
  * Description: Name of the advertisement.

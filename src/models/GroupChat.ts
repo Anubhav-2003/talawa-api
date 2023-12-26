@@ -67,3 +67,4 @@ const groupChatModel = (): Model<InterfaceGroupChat> =>
 export const GroupChat = (models.GroupChat || groupChatModel()) as ReturnType<
   typeof groupChatModel
 >;
+console.log("Test");

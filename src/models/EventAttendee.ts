@@ -10,7 +10,7 @@ export interface InterfaceEventAttendee {
   eventId: PopulatedDoc<InterfaceEvent & Document>;
   checkInId: PopulatedDoc<InterfaceCheckIn & Document> | null;
 }
-
+console.log("Test");
 const eventAttendeeSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,

@@ -9,6 +9,7 @@ export interface InterfaceLanguageModel {
   verified: boolean;
   createdAt: Date;
 }
+console.log("Test");
 /**
  * This schema defines the structure of a Language Model that corresponds to `InterfaceLanguageModel` document.
  * which is utilised as an association in the 'languageSchema' schema.

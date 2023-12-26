@@ -5,6 +5,7 @@ import type { InterfacePost } from "./Post";
 /**
  * This is an interface representing a document for a comment in the database(MongoDB).
  */
+console.log("Test");
 export interface InterfaceComment {
   _id: Types.ObjectId;
   text: string;

@@ -12,6 +12,7 @@ export interface InterfaceMessageChat {
   receiver: PopulatedDoc<InterfaceUser & Document>;
   createdAt: Date;
 }
+console.log("Test");
 /**
  * This the structure of a chat
  * @param message - Chat message

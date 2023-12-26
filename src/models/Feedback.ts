@@ -26,7 +26,7 @@ const feedbackSchema = new Schema({
     required: false,
   },
 });
-
+console.log("Test");
 // We will also create an index here for faster database querying
 feedbackSchema.index({
   eventId: 1,

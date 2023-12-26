@@ -9,6 +9,7 @@ export interface InterfaceEncodedImage {
   content: string;
   numberOfUses: number;
 }
+console.log("Test");
 /**
  * This describes the schema for a `encodedImage` that corresponds to `InterfaceEncodedImage` document.
  * @param fileName - File name.

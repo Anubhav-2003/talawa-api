@@ -11,6 +11,7 @@ export interface InterfaceMembershipRequest {
   user: PopulatedDoc<InterfaceUser & Document> | undefined;
   status: string;
 }
+console.log("Test");
 /**
  * This describes the schema for a `MembershipRequest` that corresponds to `InterfaceMembershipRequest` document.
  * @param organization - Organization data for which membership request is added.

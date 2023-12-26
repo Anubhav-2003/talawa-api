@@ -28,7 +28,7 @@ export interface InterfaceEvent {
   organization: PopulatedDoc<InterfaceOrganization & Document>;
   status: string;
 }
-
+console.log("Test");
 /**
  * This is the Structure of the Event
  * @param title - Title of the event

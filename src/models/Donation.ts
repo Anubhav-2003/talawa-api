@@ -11,6 +11,7 @@ export interface InterfaceDonation {
   nameOfUser: string;
   amount: number;
 }
+console.log("Test");
 /**
  * This is the Structure of the Donation
  * @param userId - User-id

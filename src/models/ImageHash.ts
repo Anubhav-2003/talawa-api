@@ -10,6 +10,7 @@ export interface InterfaceImageHash {
   numberOfUses: number;
   status: string;
 }
+console.log("Test");
 /**
  * This represents the schema for an `ImageHash`.
  * @param hashValue - Hash value of an image. `type: String`

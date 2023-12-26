@@ -15,6 +15,7 @@ export interface InterfaceMessage {
   group: PopulatedDoc<InterfaceGroup & Document>;
   status: string;
 }
+console.log("Test");
 /**
  * This describes the schema for a `Message` that corresponds to `InterfaceMessage` document.
  * @param text - Message content.

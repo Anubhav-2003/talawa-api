@@ -24,7 +24,7 @@ const organizationCustomFieldSchema = new mongoose.Schema({
     default: "",
   },
 });
-
+console.log("Test");
 // Define and export the model directly
 const OrganizationCustomField: Model<InterfaceOrganizationCustomField> =
   mongoose.models.CustomField ||

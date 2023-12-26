@@ -14,6 +14,7 @@ export interface InterfaceFile {
   contentType: string | undefined;
   status: string;
 }
+console.log("Test");
 /**
  * This is the structure of a file
  * @param name - Name

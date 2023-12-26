@@ -13,6 +13,7 @@ export interface InterfaceGroupChatMessage {
   messageContent: string;
   status: string;
 }
+console.log("Test");
 /**
  * This represents the schema for a `GroupChatMessage`.
  * @param groupChatMessageBelongsTo - This is the association referring to the `GroupChat` model.

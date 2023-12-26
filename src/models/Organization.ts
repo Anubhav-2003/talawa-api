@@ -8,6 +8,7 @@ import type { InterfaceOrganizationCustomField } from "./OrganizationCustomField
 /**
  * This is an interface that represents a database(MongoDB) document for Organization.
  */
+console.log("Test");
 export interface InterfaceOrganization {
   _id: Types.ObjectId;
   apiUrl: string | undefined;
