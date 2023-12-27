@@ -77,7 +77,7 @@ jobs:
       - name: Count changed files in base branch
         id: count-changed-files
         run: |
-          num_files=$(wc -l < changed_files_base.txt)
+          num_files=$(wc -l < changed_files_base.txt | awk '{print $1}')
           echo "num_changed_files=${num_files}" >> $GITHUB_ENV
 
       - name: Use environment variable in next step
