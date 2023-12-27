@@ -79,6 +79,10 @@ jobs:
           num_files=$(wc -l < changed_files_base.txt)
           echo "::set-output name=num_changed_files::${num_files}"
 
+      - name: Use output in next step
+        run: |
+          echo "Number of changed files: ${{ steps.count-changed-files.outputs.num_changed_files }}"
+
   Test-Application:
     name: Testing Application
     runs-on: ubuntu-latest
