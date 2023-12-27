@@ -76,7 +76,7 @@ jobs:
 
       - name: Count changed files in base branch
         run: |
-          num_files=$(wc -l < changed_files_base.txt)
+          num_files=$(wc -l < files_changed_base.txt)
           echo "::set-output name=num_changed_files::${num_files}"
 
       - name: Use output in next step
