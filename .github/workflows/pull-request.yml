@@ -72,16 +72,17 @@ jobs:
           git fetch origin $BASE_BRANCH
           git checkout pr-branch
           git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
-          echo "::set-output name=files_changed_base::$(cat changed_files_base.txt)"
+          echo "files_changed_base=$(cat changed_files_base.txt)" >> $GITHUB_ENV
 
       - name: Count changed files in base branch
+        id: count-changed-files
         run: |
-          num_files=$(wc -l < files_changed_base.txt)
-          echo "::set-output name=num_changed_files::${num_files}"
+          num_files=$(wc -l < changed_files_base.txt)
+          echo "num_changed_files=${num_files}" >> $GITHUB_ENV
 
-      - name: Use output in next step
+      - name: Use environment variable in next step
         run: |
-          echo "Number of changed files: ${{ steps.count-changed-files.outputs.num_changed_files }}"
+          echo "Number of changed files: ${{ env.num_changed_files }}"
 
   Test-Application:
     name: Testing Application
