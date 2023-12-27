@@ -59,9 +59,13 @@ jobs:
     env:
       BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
       - name: Checkout code
         run: git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
-
+        working-directory: ${{ github.workspace }}
+        
       - name: Get changed files in base branch
         id: changed-files-base
         run: |
