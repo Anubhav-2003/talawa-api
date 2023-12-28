@@ -73,7 +73,7 @@ jobs:
           git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
           sed -i '/^$/d' changed_files_base.txt || true
           pip install python-shell  # Install python-shell package if necessary
-          python -c "import sys; file_name = sys.argv[1]; print(f'Number of lines in {file_name}: {len(open(file_name).read().splitlines())}')" "changed_files_base.txt"
+          python -c "import sys; file_name = sys.argv[1]; num_lines = len(open(file_name).read().splitlines()); print('No of files changed exceeds 20 or merging to wrong branch') if num_lines > 20 else None; sys.exit(1) if num_lines > 20 else None" "changed_files_base.txt"
 
 
   Test-Application:
