@@ -72,19 +72,9 @@ jobs:
           git fetch origin $BASE_BRANCH
           git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
           sed -i '/^$/d' changed_files_base.txt || true
-          pip install 
-          python-shell  # Install python-shell package if necessary
-          python -c "
-          import sys; 
-          file_name = sys.argv[1]
-          try:
-            with open(file_name, 'r') as file:
-              input_text = file.read()
-              lines = input_text.split('\n')
-              num_lines = len(lines)
-              print(f'Number of lines in {file_name}: {num_lines}')
-          except FileNotFoundError:
-              print(f"File '{file_name}' not found.")" "changed_files_base.txt"
+          pip install python-shell  # Install python-shell package if necessary
+          python -c "import sys; file_name = sys.argv[1]; print(f'Number of lines in {file_name}: {len(open(file_name).read().splitlines())}')" "changed_files_base.txt"
+
 
   Test-Application:
     name: Testing Application
