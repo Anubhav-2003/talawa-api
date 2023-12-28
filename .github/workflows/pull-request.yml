@@ -70,15 +70,10 @@ jobs:
         id: changed-files-base
         run: |
           git fetch origin $BASE_BRANCH
-          git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt || true
+          git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
           sed -i '/^$/d' changed_files_base.txt || true
-          echo "files_changed_base=$(<changed_files_base.txt)" >> $GITHUB_ENV
-
-      - name: Count changed lines in Python
-        run: |
           pip install python-shell  # Install python-shell package if necessary
-          python -c "import sys; input_text = sys.argv[1]; lines = input_text.split('\n'); num_lines = len(lines); print(f'Number of changed lines: {num_lines}') " "${{ env.files_changed_base }}"
-
+          python -c "import sys; input_text = sys.argv[1]; lines = input_text.split('\n'); num_lines = len(lines); print(f'Number of changed lines: {num_lines}') " "changed_files_base.txt"
 
   Test-Application:
     name: Testing Application
