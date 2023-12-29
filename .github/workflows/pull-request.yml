@@ -66,14 +66,14 @@ jobs:
         run: git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
         working-directory: ${{ github.workspace }}
         
-      - name: Get changed files in base branch
+      - name: Get changed files in base branch, compare difference, and execute python script
         id: changed-files-base
         run: |
           git fetch origin $BASE_BRANCH
           git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
           sed -i '/^$/d' changed_files_base.txt || true
-          pip install python-shell  # Install python-shell package if necessary
-          python -c "import sys; file_name = sys.argv[1]; num_lines = len(open(file_name).read().splitlines()); print('No of files changed exceeds 20 or merging to wrong branch') if num_lines > 20 else None; sys.exit(1) if num_lines > 20 else None" "changed_files_base.txt"
+          pip install python-shell
+          python -c "import sys; file_name = sys.argv[1]; num_lines = len(open(file_name).read().splitlines()); print('No of files changed exceeds 20, or Base or Source branch incorrect.') if num_lines > 20 else None; sys.exit(1) if num_lines > 20 else None" "changed_files_base.txt"
 
 
   Test-Application:
