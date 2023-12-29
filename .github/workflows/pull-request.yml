@@ -65,6 +65,16 @@ jobs:
       - name: Checkout code
         run: git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
         working-directory: ${{ github.workspace }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11.6'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black pydocstyle
         
       - name: Get changed files in base branch, compare difference, and execute python script
         id: changed-files-base
@@ -72,9 +82,12 @@ jobs:
           git fetch origin $BASE_BRANCH
           git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
           sed -i '/^$/d' changed_files_base.txt || true
-          pip install python-shell
-          python -c "import sys; file_name = sys.argv[1]; num_lines = len(open(file_name).read().splitlines()); print('No of files changed exceeds 20, or Base or Source branch incorrect.') if num_lines > 20 else None; sys.exit(1) if num_lines > 20 else None" "changed_files_base.txt"
+          echo "CHANGED_FILES_BASE=$(<changed_files_base.txt)" >> $GITHUB_ENV
 
+      - name: Run PR file count check
+        run: |
+          cd .github/workflows
+          python check_files_submitted.py ${{ env.CHANGED_FILES_BASE }}
 
   Test-Application:
     name: Testing Application
