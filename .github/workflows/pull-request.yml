@@ -82,12 +82,7 @@ jobs:
           git fetch origin $BASE_BRANCH
           git diff --name-only origin/$BASE_BRANCH...pr-branch > changed_files_base.txt
           sed -i '/^$/d' changed_files_base.txt || true
-          echo "CHANGED_FILES_BASE=$(<changed_files_base.txt)" >> $GITHUB_ENV
-
-      - name: Run PR file count check
-        run: |
-          cd .github/workflows
-          python check_files_submitted.py ${{ env.CHANGED_FILES_BASE }}
+          python .github/workflows/check_files_submitted.py changed_files_base.txt
 
   Test-Application:
     name: Testing Application
