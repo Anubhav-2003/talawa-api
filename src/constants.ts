@@ -106,7 +106,7 @@ export const INVALID_ROLE_TYPE = {
   CODE: "internalServerError",
   PARAM: "internalServerError",
 };
-
+//imp
 export const SAME_FILE_ERROR = {
   MESSAGE: "The newer image is the same as the previous image in the database",
   CODE: "internalServerError",
