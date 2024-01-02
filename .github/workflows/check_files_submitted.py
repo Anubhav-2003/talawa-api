@@ -20,68 +20,59 @@ NOTE:
 
 import sys
 import subprocess
+import argparse
 
 
-def check_file_lines(file_name):
+def get_changed_files(base_branch, pr_branch):
     """
-    Check the number of lines in a file.
+    Get the list of changed files between branches.
 
     Args:
-        file_name (str): Name of the file to check.
+        base_branch (str): Base branch name.
+        pr_branch (str): Pull request branch name.
 
     Returns:
-        bool: True if the number of lines is within limit, False otherwise.
+        list: List of changed file names.
     """
     try:
-        with open(file_name, "r", encoding="utf-8") as file:
-            num_lines = len(file.readlines())
-            if num_lines > 20:
-                print("Number of changed files exceeds 20.")
-                return False
-    except FileNotFoundError:
-        print(f"File '{file_name}' not found.")
-        return False
+        with subprocess.Popen(
+            [
+                "git",
+                "diff",
+                "--name-only",
+                f"origin/{base_branch}...{pr_branch}",
+            ],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            universal_newlines=True,
+        ) as git_diff_process:
+            git_diff_output, git_diff_error = git_diff_process.communicate()
 
-    return True
+            if git_diff_process.returncode != 0:
+                print(f"Error: {git_diff_error}")
+                return []
 
-
-def run_checks():
-    """
-    Run checks on the script's formatting and documentation.
-
-    This function utilizes 'black' to format the script and 'pydocstyle'
-    to check for compliance with documentation standards.
-    """
-    black_check = subprocess.run(
-        ["black", __file__], capture_output=True, check=True
-        )
-    if black_check.returncode != 0:
-        print("Black failed to reformat the script.")
-        print(black_check.stderr.decode())
-        sys.exit(1)
-
-    # Running Pydocstyle linting check on the script itself
-    pydocstyle_check = subprocess.run(
-        ["pydocstyle", __file__], capture_output=True, check=True
-    )
-    if pydocstyle_check.returncode != 0:
-        print("Pydocstyle found linting issues in the script.")
-        print(pydocstyle_check.stdout.decode())
-        sys.exit(1)
+            changed_files = git_diff_output.splitlines()
+            return changed_files
+    except Exception as e:
+        print(f"Error: {e}")
+        return []
 
 
 def main():
-    """Execute checks on the file."""
-    if len(sys.argv) < 2:
-        print("Usage: python script_name.py <file_to_check>")
-        sys.exit(1)
+    """Execute checks on the changed files."""
+    parser = argparse.ArgumentParser(description="Check the number of changed files.")
+    parser.add_argument("base_branch", help="Base branch name")
+    parser.add_argument("pr_branch", help="Pull request branch name")
+    args = parser.parse_args()
 
-    file_to_check = sys.argv[1]
-    if not check_file_lines(file_to_check):
-        sys.exit(1)
+    base_branch = args.base_branch
+    pr_branch = args.pr_branch
 
-    # Running Black formatting check
-    run_checks()
+    changed_files = get_changed_files(base_branch, pr_branch)
+    if len(changed_files) > 20:
+        print("Number of changed files exceeds 20.")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
