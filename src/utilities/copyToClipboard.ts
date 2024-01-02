@@ -12,4 +12,4 @@ export const copyToClipboard = (text: string): void => {
     //@ts-ignore
     ncp.copy(text, () => {});
   }
-};
+}; //

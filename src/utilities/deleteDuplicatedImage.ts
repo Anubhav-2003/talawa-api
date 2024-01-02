@@ -15,3 +15,4 @@ export const deleteDuplicatedImage = (imagePath: PathLike): void => {
     logger.info("File was deleted as it already exists in the db!");
   });
 };
+//
