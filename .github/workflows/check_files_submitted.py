@@ -41,6 +41,7 @@ def get_changed_files(base_branch, pr_branch):
                 "diff",
                 "--name-only",
                 f"origin/{base_branch}...{pr_branch}",
+                "--",
             ],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
