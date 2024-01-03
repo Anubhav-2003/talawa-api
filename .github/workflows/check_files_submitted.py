@@ -1,10 +1,18 @@
 """
-Script to check if the number of files submitted in a Pull Request exceeds 20.
+Script to check if Pull Request surpasses the designated threshold of 20 files.
+
+We strongly recommend optimizing the changes to align with our established
+guidelines.
+Please reduce the number of files to meet this standard before submission.
+Thank you for your cooperation
 
 Methodology:
-    Analyses the text file generated after the git diff command.
-    Checks the number of files modified in the PR branch by
-    counting the lines in the file.
+    Accepts the Base Branch and PR Branch Head references as
+    command Line arguments.
+    Checks the number of files modified in the PR branch by utilizing
+    subprocess module to run the CLI commands using git diff.
+    Checks the number of changed files returned by the 'get_changed_files'
+    by the calculating the length of the list.
     Exits with an appropriate error message if the number of files exceeds 20.
 
 NOTE:
@@ -61,7 +69,22 @@ def get_changed_files(base_branch, pr_branch):
 
 
 def main():
-    """Execute checks on the changed files."""
+    """
+    Perform checks on changed files between base and pull request branches.
+
+    1. Gathers branch name references from the command-line arguments
+       utilizing the argparse module.
+    2. Utilizes the 'get_changed_files' function to retrieve the modified files
+       between the specified branches.
+    3. If the number of files exceeds 20, issues an error message and exits
+       with a status code of 1, ensuring adherence to file count standards.
+
+    Args:
+        None. (Uses command-line arguments)
+
+    Returns:
+        None. (Exits with sys.exit() if conditions are met)
+    """
     parser = argparse.ArgumentParser(description="Check the number of changed files.")
     parser.add_argument("base_branch", help="Base branch name")
     parser.add_argument("pr_branch", help="Pull request branch name")
@@ -72,7 +95,12 @@ def main():
 
     changed_files = get_changed_files(base_branch, pr_branch)
     if len(changed_files) > 20:
-        print("Number of changed files exceeds 20.")
+        print("The pull request contains an excessive number of changed files (more than 20).")
+        print("Please ensure your changes are concise and focused.")
+        print("Potential Causes: ")
+        print("-A potential merge into an unintended or incorrect branch.")
+        print("-Wrong source branch can be the cause.")
+        print("-Ensure utilizing 'develop' as the source branch.")
         sys.exit(1)
 
 
