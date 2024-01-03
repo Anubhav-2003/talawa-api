@@ -40,7 +40,7 @@ def get_changed_files(base_branch, pr_branch):
                 "git",
                 "diff",
                 "--name-only",
-                f"origin/{base_branch}...origin/{pr_branch}",
+                f"origin/{base_branch}...{pr_branch}",
                 "--",
             ],
             stdout=subprocess.PIPE,
