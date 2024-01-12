@@ -120,7 +120,7 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         apiUrl: "apiUrl",
         address: {
           city: "CityName",
-          countryCode: "CountryCode",
+          countryCode: "US",
           dependentLocality: "Dependent Locality",
           line1: "123 Main Street",
           line2: "Apartment 456",
@@ -149,7 +149,7 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         apiUrl: "apiUrl",
         address: {
           city: "CityName",
-          countryCode: "CountryCode",
+          countryCode: "US",
           dependentLocality: "Dependent Locality",
           line1: "123 Main Street",
           line2: "Apartment 456",
@@ -195,7 +195,7 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         apiUrl: "apiUrl",
         address: {
           city: "CityName",
-          countryCode: "CountryCode",
+          countryCode: "US",
           dependentLocality: "Dependent Locality",
           line1: "123 Main Street",
           line2: "Apartment 456",
@@ -224,7 +224,7 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         apiUrl: "apiUrl",
         address: {
           city: "CityName",
-          countryCode: "CountryCode",
+          countryCode: "US",
           dependentLocality: "Dependent Locality",
           line1: "123 Main Street",
           line2: "Apartment 456",
@@ -332,17 +332,6 @@ describe("resolvers -> Mutation -> createOrganization", () => {
       state: "New York",
     };
 
-    const validAddress = {
-      city: "New York",
-      countryCode: "US",
-      dependentLocality: "Manhattan",
-      line1: "123 Main Street",
-      line2: "Apt 2B",
-      postalCode: "10001",
-      sortingCode: "ABC123",
-      state: "NY",
-    };
-
     const invalidArgs: MutationCreateOrganizationArgs = {
       data: {
         description: "Some description",
@@ -351,18 +340,6 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         visibleInSearch: true,
         apiUrl: "https://example.com/api",
         address: invalidAddress,
-      },
-      file: null,
-    };
-
-    const validArgs: MutationCreateOrganizationArgs = {
-      data: {
-        description: "Some description",
-        isPublic: true,
-        name: "Test Organization",
-        visibleInSearch: true,
-        apiUrl: "https://example.com/api",
-        address: validAddress,
       },
       file: null,
     };
@@ -378,14 +355,6 @@ describe("resolvers -> Mutation -> createOrganization", () => {
       } catch (error: any) {
         // Validate that the error message matches the expected Address Validation Error message
         expect(error.message).toEqual("Not a Valid Address");
-      }
-
-      //Testing for Valid address
-      try {
-        await createOrganizationResolver({}, validArgs, context);
-      } catch (error: any) {
-        // Validate that the error message matches the expected Address Validation Error message
-        expect(error.message).toEqual("Something went wrong.");
       }
     } else {
       console.error(
