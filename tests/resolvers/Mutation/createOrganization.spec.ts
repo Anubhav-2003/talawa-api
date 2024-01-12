@@ -58,7 +58,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
           name: "name",
           visibleInSearch: true,
           apiUrl: "apiUrl",
-          location: "location",
+          address: {
+            city: "CityName",
+            countryCode: "CountryCode",
+            dependentLocality: "Dependent Locality",
+            line1: "123 Main Street",
+            line2: "Apartment 456",
+            postalCode: "12345",
+            sortingCode: "ABC-123",
+            state: "State/Province",
+          },
         },
       };
 
@@ -109,7 +118,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         name: "name",
         visibleInSearch: true,
         apiUrl: "apiUrl",
-        location: "location",
+        address: {
+          city: "CityName",
+          countryCode: "US",
+          dependentLocality: "Dependent Locality",
+          line1: "123 Main Street",
+          line2: "Apartment 456",
+          postalCode: "12345",
+          sortingCode: "ABC-123",
+          state: "State/Province",
+        },
       },
       file: "imagePath",
     };
@@ -129,7 +147,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         name: "name",
         visibleInSearch: true,
         apiUrl: "apiUrl",
-        location: "location",
+        address: {
+          city: "CityName",
+          countryCode: "US",
+          dependentLocality: "Dependent Locality",
+          line1: "123 Main Street",
+          line2: "Apartment 456",
+          postalCode: "12345",
+          sortingCode: "ABC-123",
+          state: "State/Province",
+        },
         creator: testUser?._id,
         admins: [testUser?._id],
         members: [testUser?._id],
@@ -166,7 +193,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         name: "name",
         visibleInSearch: true,
         apiUrl: "apiUrl",
-        location: "location",
+        address: {
+          city: "CityName",
+          countryCode: "US",
+          dependentLocality: "Dependent Locality",
+          line1: "123 Main Street",
+          line2: "Apartment 456",
+          postalCode: "12345",
+          sortingCode: "ABC-123",
+          state: "State/Province",
+        },
       },
       file: null,
     };
@@ -186,7 +222,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
         name: "name",
         visibleInSearch: true,
         apiUrl: "apiUrl",
-        location: "location",
+        address: {
+          city: "CityName",
+          countryCode: "US",
+          dependentLocality: "Dependent Locality",
+          line1: "123 Main Street",
+          line2: "Apartment 456",
+          postalCode: "12345",
+          sortingCode: "ABC-123",
+          state: "State/Province",
+        },
         creator: testUser?._id,
         admins: [testUser?._id],
         members: [testUser?._id],
@@ -208,7 +253,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
           name: "JWQPfpdkGGGKyryb86K4YN85nDj4m4F7gEAMBbMXLax73pn2okV6kpWY0EYO0XSlUc0fAlp45UCgg3s6mqsRYF9FOlzNIDFLZ1rd03Z17cdJRuvBcAmbC0imyqGdXHGDUQmVyOjDkaOLAvjhB5uDeuEqajcAPTcKpZ6LMpigXuqRAd0xGdPNXyITC03FEeKZAjjJL35cSIUeMv5eWmiFlmmm70FU1Bp6575zzBtEdyWPLflcA2GpGmmf4zvT7nfgN3NIkwQIhk9OwP8dn75YYczcYuUzLpxBu1Lyog77YlAj5DNdTIveXu9zHeC6V4EEUcPQtf1622mhdU3jZNMIAyxcAG4ErtztYYRqFs0ApUxXiQI38rmiaLcicYQgcOxpmFvqRGiSduiCprCYm90CHWbQFq4w2uhr8HhR3r9HYMIYtrRyO6C3rPXaQ7otpjuNgE0AKI57AZ4nGG1lvNwptFCY60JEndSLX9Za6XP1zkVRLaMZArQNl",
           visibleInSearch: true,
           apiUrl: "apiUrl",
-          location: "location",
+          address: {
+            city: "CityName",
+            countryCode: "CountryCode",
+            dependentLocality: "Dependent Locality",
+            line1: "123 Main Street",
+            line2: "Apartment 456",
+            postalCode: "12345",
+            sortingCode: "ABC-123",
+            state: "State/Province",
+          },
         },
         file: null,
       };
@@ -237,7 +291,16 @@ describe("resolvers -> Mutation -> createOrganization", () => {
           name: "random",
           visibleInSearch: true,
           apiUrl: "apiUrl",
-          location: "location",
+          address: {
+            city: "CityName",
+            countryCode: "CountryCode",
+            dependentLocality: "Dependent Locality",
+            line1: "123 Main Street",
+            line2: "Apartment 456",
+            postalCode: "12345",
+            sortingCode: "ABC-123",
+            state: "State/Province",
+          },
         },
         file: null,
       };
@@ -252,32 +315,50 @@ describe("resolvers -> Mutation -> createOrganization", () => {
       );
     }
   });
-  it(`throws String Length Validation error if location is greater than 50 characters`, async () => {
+  it("throws Address Validation Error for an invalid address", async () => {
     const { requestContext } = await import("../../../src/libraries");
     vi.spyOn(requestContext, "translate").mockImplementation(
       (message) => message
     );
-    try {
-      const args: MutationCreateOrganizationArgs = {
-        data: {
-          description: "description",
-          isPublic: true,
-          name: "random",
-          visibleInSearch: true,
-          apiUrl: "apiUrl",
-          location:
-            "JWQPfpdkGGGKyryb86K4YN85nDj4m4F7gEAMBbMXLax73pn2okV6kpWY0EYO0XSlUc0fAlp45UCgg3s6mqsRYF9FOlzNIDFLZ1rd03Z17cdJRuvBcAmbC0imyqGdXHGDUQmVyOjDkaOLAvjhB5uDeuEqajcAPTcKpZ6LMpigXuqRAd0xGdPNXyITC03FEeKZAjjJL35cSIUeMv5eWmiFlmmm70FU1Bp6575zzBtEdyWPLflcA2GpGmmf4zvT7nfgN3NIkwQIhk9OwP8dn75YYczcYuUzLpxBu1Lyog77YlAj5DNdTIveXu9zHeC6V4EEUcPQtf1622mhdU3jZNMIAyxcAG4ErtztYYRqFs0ApUxXiQI38rmiaLcicYQgcOxpmFvqRGiSduiCprCYm90CHWbQFq4w2uhr8HhR3r9HYMIYtrRyO6C3rPXaQ7otpjuNgE0AKI57AZ4nGG1lvNwptFCY60JEndSLX9Za6XP1zkVRLaMZArQNl",
-        },
-        file: null,
-      };
-      const context = {
-        userId: testUser?._id,
-      };
+    const invalidAddress = {
+      // Constructing an invalid address.
+      city: "", // An empty city field
+      countryCode: "USA", // Invalid country code format
+      dependentLocality: "Manhattan",
+      line1: "123 Main Street",
+      line2: "Apt 2B",
+      postalCode: "InvalidPostalCode", // Invalid postal code format
+      sortingCode: "ABC123",
+      state: "New York",
+    };
 
-      await createOrganizationResolver?.({}, args, context);
-    } catch (error: any) {
-      expect(error.message).toEqual(
-        `${LENGTH_VALIDATION_ERROR.MESSAGE} 50 characters in location`
+    const invalidArgs: MutationCreateOrganizationArgs = {
+      data: {
+        description: "Some description",
+        isPublic: true,
+        name: "Test Organization",
+        visibleInSearch: true,
+        apiUrl: "https://example.com/api",
+        address: invalidAddress,
+      },
+      file: null,
+    };
+
+    const context = {
+      userId: testUser?._id,
+    };
+
+    if (createOrganizationResolver) {
+      // Testing for Invalid address
+      try {
+        await createOrganizationResolver({}, invalidArgs, context);
+      } catch (error: any) {
+        // Validate that the error message matches the expected Address Validation Error message
+        expect(error.message).toEqual("Not a Valid Address");
+      }
+    } else {
+      console.error(
+        "Error: createOrganizationResolver is undefined in the test suite"
       );
     }
   });
